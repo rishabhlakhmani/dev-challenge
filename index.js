@@ -15,7 +15,6 @@ require('./site/style.css')
 
 // Change this to get detailed logging from the stomp library
 global.DEBUG = false
-
 const url = "ws://localhost:8011/stomp"
 const client = Stomp.client(url)
 client.debug = function(msg) {
@@ -25,11 +24,19 @@ client.debug = function(msg) {
 }
 
 function connectCallback() {
-  document.getElementById('stomp-status').innerHTML = "It has now successfully connected to a stomp server serving price updates for some foreign exchange currency pairs."
+    subscription = client.subscribe("/fx/prices", callback);
+    const stopButton = document.getElementById('stop-updates');
+    stopButton.onclick = () => {
+        subscription.unsubscribe();
+    }
+}
+
+const callback = (curencyUpdate) => {
+    console.log(curencyUpdate.body);
 }
 
 client.connect({}, connectCallback, function(error) {
-  alert(error.headers.message)
+  console.log(error.headers.message);
 })
 
 const exampleSparkline = document.getElementById('example-sparkline')
