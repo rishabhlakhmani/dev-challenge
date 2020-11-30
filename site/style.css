@@ -42,7 +42,7 @@ table {
     font-size: .8em;
   }
 
-  @media screen and (max-width: 768x) {
+  @media screen and (max-width: 992px) {
     table {
       border: 0;
     }

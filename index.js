@@ -13,7 +13,7 @@ require("./site/style.css");
 //     require('./es6/myEs6code')
 // here to load the myEs6code.js file, and it will be automatically transpiled.
 
-const { getRowInsertionIndex } = require("./site/utils");
+const { getRowInsertionIndex, populateRowCells, calculateMidPrice } = require("./site/utils");
 
 // Change this to get detailed logging from the stomp library
 global.DEBUG = false;
@@ -65,16 +65,12 @@ function createRow(tbodyRef, currencyData) {
     }
     row = tbodyRef.insertRow(rowInsertionIndex);
     row.id = currencyData.name;
-    columns.forEach((key, index) => {
-        const cell = row.insertCell(index);
-        cell.innerHTML = currencyData[key];
-    });
+    populateRowCells(columns, row, currencyData);
     const sparkLineCell  = row.insertCell(columns.length);
     const key = currencyData.name;
-    const midPrice = (currencyData.bestBid + currencyData.bestAsk)/2;
+    const midPrice = calculateMidPrice(currencyData.bestBid, currencyData.bestAsk);
     updateMidPrice(midPrice, key);
     Sparkline.draw(sparkLineCell, midPrireObj[key]);
-
 }
 
 // Update sparkLine cell for every row
