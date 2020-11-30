@@ -20,4 +20,4 @@ function getRowInsertionIndex(lastChangeBidValue, existingRowIndex) {
     }
   }
 
-module.exports.getRowInsertionIndex = getRowInsertionIndex;
+exports.getRowInsertionIndex = getRowInsertionIndex;
