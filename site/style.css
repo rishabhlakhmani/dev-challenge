@@ -4,20 +4,24 @@ body {
     width: 100%
 }
 
-.content {
+.content .table, footer{
     text-align: center;
 }
+
 
 table {
     border: 1px solid #ccc;
     margin: auto;
     padding: 0;
     width: 90%;
+    margin-bottom: 1em;
     table-layout: fixed;
   }
 
   table caption {
     margin: .5em;
+    font-weight: bold;
+    font-size: 1.5em;
   }
 
   table tr {
@@ -38,7 +42,7 @@ table {
     font-size: .8em;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 768x) {
     table {
       border: 0;
     }

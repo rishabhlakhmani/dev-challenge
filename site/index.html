@@ -10,25 +10,78 @@
 <body>
 
 <section class="content">
-    <table id="currency-table">
-        <caption>Currency Table</caption>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Best bid</th>
-                <th>Best ask</th>
-                <th>Open bid</th>
-                <th>Open ask</th>
-                <th>Last change ask</th>
-                <th>Last change bid</th>
-                <th>Sparkline</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <button id="stop-updates">Stop Updates</button>
+    <div class="table">
+        <table id="currency-table">
+            <caption>Currency Table</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Best bid</th>
+                    <th>Best ask</th>
+                    <th>Open bid</th>
+                    <th>Open ask</th>
+                    <th>Last change ask</th>
+                    <th>Last change bid</th>
+                    <th>Sparkline</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Description</h2>
+
+    <p> This table is created to show some currency pairs with their respective data like Best bid,
+        Best ask, Last change ask,Last change bid etc, which are keep on changing in real time. The table will always
+        be sorted with <b>lastChangeBid</b>.<br/><br/>
+        The High level description is:
+    </p>
+
+    <ul>
+        <li>
+            Whenever it gets the new update from Stomp web server, it will check whether table already has a row
+            for recieved currency pair or not. </li>
+            <ul>
+                <li>
+                    If no, it will get the index of where the new row should be inserted so that table should be remain sorted
+                    and it will insert a new row at that index.
+                </li>
+                <li>
+                    If yes, it will delete the existing row and insert one new row with updated data on proper index.
+                </li>
+            </ul>
+        <li>
+            Last column of the table contains the sparkline which represents the mid price over the last 30 seconds. Whenever it inserts
+            a new row, it will update the sparkline with new mid price and it will keep on updating the sparkline every second with the last
+            value until we get the new data for same row.
+        </li>
+    </ul>
+
+    <h2>Assumptions</h2>
+
+    <ul>
+        <li>
+            Columns are pre known.
+        </li>
+        <li>
+            Sorting order of lastChangeBid is Ascending order.
+        </li>
+    </ul>
+
+    <p><b>Note:</b> For this particular task, I would have liked to use React.js as it would have made easy to update
+        the table.</p>
+
 </section>
+
+<footer>
+    <p>
+        <b>Name:</b> Rishabh Lakhmani <br/>
+        <b>Email:</b> rishabhlakhmani95@gmail.com <br/>
+        <b>Mob:</b> +919695622344 <br/>
+    </p>
+
+</footer>
 
 <!-- Code you write in index.js and anything it depends on will be bundled into bundle.js and
      is included here -->

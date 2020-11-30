@@ -39,10 +39,6 @@ const midPrireObj = {};
 
 function connectCallback() {
     subscription = client.subscribe("/fx/prices", callback);
-    const stopButton = document.getElementById("stop-updates");
-    stopButton.onclick = () => {
-        subscription.unsubscribe();
-    };
 }
 
 function callback(message) {
